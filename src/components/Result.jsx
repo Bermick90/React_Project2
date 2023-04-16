@@ -1,7 +1,5 @@
-const Form = () => {
-  return <form className="calculation" id="form"></form>;
+const Result = () => {
+  return <p id="result">PLN</p>;
 };
 
-export default Form;
-
-<p id="result"></p>;
+export default Result;
