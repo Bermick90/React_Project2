@@ -7,6 +7,7 @@ import Result from './components/Result';
 function App() {
   const [selectValue, setSelectValue] = useState('EUR');
   const [inputValue, setInputValue] = useState('');
+  const [outputValue, setOutputValue] = useState('');
 
   const handleSelectChange = (value) => {
     setSelectValue(value);
@@ -28,22 +29,14 @@ function App() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.rates[0].mid);
+        convertCurrency(data.rates[0].mid);
       });
   };
 
-  // const convertCurrency = () => {
-
-  //     if (item.code === currencySelect.value) {
-  //       if (currencySelect.value <= 0) {
-  //       } else {
-  //         const result = item.mid * inputAmount.value;
-  //         const resultFixed = result.toFixed(2);
-  //         resultValue.innerHTML = resultFixed + ' PLN';
-  //       }
-  //     }
-  //   });
-  // };
+  const convertCurrency = (rate) => {
+    const result = (rate * inputValue).toFixed(2);
+    setOutputValue(result);
+  };
 
   return (
     <>
@@ -52,7 +45,7 @@ function App() {
         <Select onChange={handleSelectChange} />
         <input type="submit" value="Przelicz" />
       </form>
-      <Result />
+      <Result convertedValue={outputValue} />
     </>
   );
 }

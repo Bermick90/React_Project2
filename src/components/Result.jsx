@@ -1,5 +1,5 @@
-const Result = () => {
-  return <p id="result">PLN</p>;
+const Result = ({ convertedValue }) => {
+  return <p id="result">{convertedValue}PLN</p>;
 };
 
 export default Result;
