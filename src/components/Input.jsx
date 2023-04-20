@@ -7,8 +7,10 @@ const Input = ({ onChange }) => {
     <input
       id="amount"
       type="number"
-      min="1"
+      min="0.01"
+      step="0.01"
       onChange={onInputChange}
+      required
     />
   );
 };

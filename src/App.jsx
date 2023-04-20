@@ -5,7 +5,7 @@ import Input from './components/Input';
 import Result from './components/Result';
 import companyLogo from './assets/GRU.png';
 
-function App() {
+const App = () => {
   const [selectValue, setSelectValue] = useState('EUR');
   const [inputValue, setInputValue] = useState('');
   const [outputValue, setOutputValue] = useState('');
@@ -17,14 +17,8 @@ function App() {
     setInputValue(value);
   };
 
-  const validateForm = (event) => {
+  const getCurrencies = (event) => {
     event.preventDefault();
-    if (inputValue) {
-      getCurrencies();
-    } else alert('uzupełnij pole!');
-  };
-
-  const getCurrencies = () => {
     fetch(
       `https://api.nbp.pl/api/exchangerates/rates/A/${selectValue}`
     )
@@ -50,7 +44,7 @@ function App() {
           <h1 className="text--center">Pigeon Currency Calculator</h1>
         </div>
         <div className="calculation">
-          <form onSubmit={validateForm}>
+          <form onSubmit={getCurrencies}>
             <Input onChange={handleInputChange} />
             <Select onChange={handleSelectChange} />
             <input type="submit" value="Przelicz" />
@@ -60,6 +54,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;
